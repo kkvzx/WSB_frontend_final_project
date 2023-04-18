@@ -1,0 +1,19 @@
+.home-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  text-decoration: none;
+  color: initial;
+  border: 1px solid black;
+  transition: .3s all;
+  padding:4px;
+}
+a.button:hover{
+    background:pink;
+}
