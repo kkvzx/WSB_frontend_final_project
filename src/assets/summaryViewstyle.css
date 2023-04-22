@@ -1,0 +1,19 @@
+.choose-seat{
+    width: 100%;
+    height: 44%;
+    background-color: #113843;
+
+}
+
+.weather{
+    width: 49%;
+    height: 55%;
+    background-color: red;
+    display: inline-block;
+}
+
+.currency{
+    width: 49%;
+    height: 55%;
+    display: inline-block;
+}
