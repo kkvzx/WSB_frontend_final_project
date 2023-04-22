@@ -2,6 +2,13 @@
 const samolot = document.getElementsByClassName("choose-seat")[0];
 const seatsInRow = 6;
 const rows = 15;
+const price = document.getElementsByClassName('value')[0];
+const currencySpan = document.getElementsByClassName('currencySpan')[0];
+const ticketPrice = 100;
+const currencies = ['zł', 'eur', 'usd']
+
+let sum = 0;
+let actualCurrency = 0;
 
 // --- tablica z wybranymi miejscami
 let seats: string[] = [];
@@ -13,13 +20,16 @@ function chooseSeat(div: any) {
     if(div.classList.length == 1) {
         div.classList.add('choosed');
         seats.push(seatNumber);
-    }
-    else {
+    } else {
         div.classList.remove('choosed');
         let i = seats.findIndex((obj) => obj == seatNumber);
         seats.splice(i,1);
     }
-
+    
+    sum = seats.length * ticketPrice;
+    price.innerHTML = sum.toString();
+    currencySpan.innerHTML = ' ' + currencies[actualCurrency];
+    
     console.log(seats);
 }
 
