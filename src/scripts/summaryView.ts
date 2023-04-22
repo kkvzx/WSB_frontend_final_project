@@ -28,7 +28,8 @@ function chooseSeat(div: any) {
     }
     
     sum = seats.length * ticketPrice;
-    price.innerHTML = sum.toString();
+    let value = convertCurrency(actualCurrency);
+    price.innerHTML = value.toString();
     currencySpan.innerHTML = ' ' + currencies[actualCurrency];
     
     // console.log(seats);
@@ -38,10 +39,10 @@ function chooseSeat(div: any) {
 
 
 function convertCurrency(toCurrency: any) {
-    if (toCurrency == 0) {
-      return (sum / exchangeCurr[toCurrency]).toFixed(2);
-    } else if (toCurrency == 1) {
-      return (sum / exchangeCurr[toCurrency]).toFixed(2);
+    if (toCurrency == 1) {
+      return (sum / exchangeCurr[toCurrency-1]).toFixed(2);
+    } else if (toCurrency == 2) {
+      return (sum / exchangeCurr[toCurrency-1]).toFixed(2);
     } else {
       return sum;
     }
@@ -93,3 +94,25 @@ function addSeats() {
 }
 
 addSeats();
+
+const zł = document.getElementById("ZŁ");
+zł.addEventListener('click', function() {
+    actualCurrency = 0;
+    price.innerHTML = sum.toString();
+    currencySpan.innerHTML = ' ' + currencies[actualCurrency];
+});
+
+const eur = document.getElementById("EUR");
+eur.addEventListener('click', function() {
+    actualCurrency = 1;
+    price.innerHTML = convertCurrency(actualCurrency).toString();
+    currencySpan.innerHTML = ' ' + currencies[actualCurrency];
+});
+
+
+const usd = document.getElementById("USD");
+usd.addEventListener('click', function() {
+    actualCurrency = 2;
+    price.innerHTML = convertCurrency(actualCurrency).toString();
+    currencySpan.innerHTML = ' ' + currencies[actualCurrency];
+});
