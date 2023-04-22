@@ -7,6 +7,7 @@ const price = document.getElementsByClassName('value')[0];
 const currencySpan = document.getElementsByClassName('currencySpan')[0];
 const ticketPrice = 100;
 const currencies = ['zł', 'eur', 'usd']
+const exchangeCurr = [4.6039, 4.2006]
 
 let sum = 0;
 let actualCurrency = 0;
@@ -31,7 +32,20 @@ function chooseSeat(div: any) {
     price.innerHTML = sum.toString();
     currencySpan.innerHTML = ' ' + currencies[actualCurrency];
     
-    console.log(seats);
+    // console.log(seats);
+    // console.log(convertCurrency(0) + "eur");
+    // console.log(convertCurrency(1) + "usd");
+}
+
+
+function convertCurrency(toCurrency: any) {
+    if (toCurrency == 0) {
+      return (sum / exchangeCurr[toCurrency]).toFixed(2);
+    } else if (toCurrency == 1) {
+      return (sum / exchangeCurr[toCurrency]).toFixed(2);
+    } else {
+      return sum;
+    }
 }
 
 // --- funkcja tworząca "miejsce"
