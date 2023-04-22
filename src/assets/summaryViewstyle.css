@@ -1,8 +1,8 @@
 .choose-seat{
     width: 100%;
     height: 44%;
-    background-color: #113843;
-
+    background-color: aquamarine;
+    position: relative;
 }
 
 .weather{
@@ -16,4 +16,27 @@
     width: 49%;
     height: 55%;
     display: inline-block;
+}
+
+.seat {
+    border: black 1px solid;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    transition: all .3s ease-in-out;
+    text-align: center;
+    color: red;
+}
+
+.seat:hover {
+    background-color: blue;
+    color: white;
+}
+
+.choosed {
+    background-color: blue;
+}
+
+h4 {
+    
 }
