@@ -3,6 +3,26 @@ const samolot = document.getElementsByClassName("choose-seat")[0];
 const seatsInRow = 6;
 const rows = 15;
 
+// --- tablica z wybranymi miejscami
+let seats: string[] = [];
+
+// --- funkcja zaznaczająca lub odznaczająca siedzenie
+function chooseSeat(div: any) {
+    let seatNumber = div.firstChild.innerHTML;
+    
+    if(div.classList.length == 1) {
+        div.classList.add('choosed');
+        seats.push(seatNumber);
+    }
+    else {
+        div.classList.remove('choosed');
+        let i = seats.findIndex((obj) => obj == seatNumber);
+        seats.splice(i,1);
+    }
+
+    console.log(seats);
+}
+
 // --- funkcja tworząca "miejsce"
 function createSeat(top: any, left: any, text: string) {
     let seat = document.createElement('div');
@@ -10,6 +30,9 @@ function createSeat(top: any, left: any, text: string) {
     seat.setAttribute('class', 'seat');
     seat.style.top = `${top}px`;
     seat.style.left = `${left}px`;
+    seat.addEventListener('click', function() {
+        chooseSeat(seat);
+    });
 
     let textInside = document.createElement('h4');
     textInside.innerHTML = text;
@@ -46,4 +69,3 @@ function addSeats() {
 }
 
 addSeats();
->>>>>>> 946c315 (siedzenia)
