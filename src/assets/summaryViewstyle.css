@@ -26,17 +26,20 @@
     transition: all .3s ease-in-out;
     text-align: center;
     color: red;
+    cursor: pointer;
 }
 
 .seat:hover {
-    background-color: blue;
-    color: white;
+    box-shadow: 3px 3px 1px grey;
+    /* background-color: blue;
+    color: white; */
 }
 
 .choosed {
     background-color: blue;
+    color: white;
 }
 
 h4 {
-    
+    cursor: pointer;
 }
