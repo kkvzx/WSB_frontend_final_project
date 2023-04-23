@@ -115,3 +115,21 @@ usd.addEventListener('click', function() {
     price.innerHTML = convertCurrency(actualCurrency).toString();
     currencySpan.innerHTML = ' ' + currencies[actualCurrency];
 });
+
+
+const apiKey = 'a48ebb02d984830ced1a889260d4cbd9';
+const lat = '49,11';
+const lon = '20,57';
+const lang = 'PL';
+
+const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&lang=${lang}&appid=${apiKey}`;
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // Tutaj możesz przetworzyć dane z odpowiedzi API OpenWeatherMap.
+  })
+  .catch(error => {
+    console.error(error);
+  });
