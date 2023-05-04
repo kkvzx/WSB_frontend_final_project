@@ -22,8 +22,16 @@
     <div class="container">
 
       <div class="weather">
-        
+        <label for="city">Wybierz miasto:</label>
+        <select id="city" name="city">
+          <option value="Katowice" selected>Katowice</option>
+          <option value="Warszawa">Warszawa</option>
+          <option value="Kraków">Kraków</option>
+          <option value="Łódź">Łódź</option>
+        </select>
+        <p>Temperatura: <span id="temperature"></span> &deg;C</p>
       </div>
+      
       
       <div class="currency">
         <h1>Cena Biletów</h1>

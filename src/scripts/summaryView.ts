@@ -117,19 +117,20 @@ usd.addEventListener('click', function() {
 });
 
 
-const apiKey = 'a48ebb02d984830ced1a889260d4cbd9';
-const lat = '49,11';
-const lon = '20,57';
-const lang = 'PL';
+const citySelect: HTMLSelectElement = document.getElementById('city') as HTMLSelectElement;
+const temperatureSpan: HTMLSpanElement = document.getElementById('temperature') as HTMLSpanElement;
 
-const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&lang=${lang}&appid=${apiKey}`;
-
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    // Tutaj możesz przetworzyć dane z odpowiedzi API OpenWeatherMap.
-  })
-  .catch(error => {
+citySelect.addEventListener('change', async () => {
+  const city: string = citySelect.value;
+  const apiKey: string = 'a48ebb02d984830ced1a889260d4cbd9';
+  const url: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=pl&appid=${apiKey}`;
+  
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const temperature = data.main.temp;
+    temperatureSpan.innerText = temperature.toFixed(1);
+  } catch (error) {
     console.error(error);
-  });
+  }
+});
