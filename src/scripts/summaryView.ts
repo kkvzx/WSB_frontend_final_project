@@ -121,11 +121,11 @@ usd.addEventListener('click', function() {
 const citySelect: HTMLSelectElement = document.getElementById('city') as HTMLSelectElement;
 const temperatureSpan: HTMLSpanElement = document.getElementById('temperature') as HTMLSpanElement;
 
-citySelect.addEventListener('change', async () => {
-  const city: string = citySelect.value;
+// funkcja do pobierania pogody dla danego miasta
+async function getWeather(city: string) {
   const apiKey: string = 'a48ebb02d984830ced1a889260d4cbd9';
   const url: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=pl&appid=${apiKey}`;
-  
+
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -134,4 +134,16 @@ citySelect.addEventListener('change', async () => {
   } catch (error) {
     console.error(error);
   }
+}
+
+// pobierz pogodę dla Katowic po załadowaniu strony
+document.addEventListener('DOMContentLoaded', () => {
+  getWeather('Katowice');
 });
+
+// obsługa zmiany miasta
+citySelect.addEventListener('change', async () => {
+  const city: string = citySelect.value;
+  getWeather(city);
+});
+
