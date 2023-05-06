@@ -1,0 +1,26 @@
+.main-view-body {
+  padding: 16px 24px;
+  background:var(--bg-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.main-view-container {
+  height: 100%;
+  width: 100%;
+  margin-top:12px;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.3);
+}
+
+.main-view-header-container {
+  display: flex;
+  justify-content: end;
+}
+
+.main-view-container-weather {
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--accent-color);
+  padding: 0 12px;
+  border-radius: 4px;
+}

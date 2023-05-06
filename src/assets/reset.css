@@ -67,3 +67,11 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+:root {
+  --bg-color: #8294C4;
+  --main-color: #ACB1D6;
+  --secondary-color: #DBDFEA;
+  --accent-color: #FFEAD2;
+
+}
