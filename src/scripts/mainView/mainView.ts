@@ -1,3 +1,5 @@
+import "../../assets/mainView.css"
+import "../../assets/reset.css"
 import {
   ARRIVAL_AIRPORTS,
   DEPARTURE_AIRPORTS,
