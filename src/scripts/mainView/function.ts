@@ -1,4 +1,9 @@
-import { ARRIVAL_AIRPORTS, DEPARTURE_AIRPORTS, OPENCAGEDATA_API_KEY, OPEN_WEATHER_API_KEY } from './constants';
+import {
+  ARRIVAL_AIRPORTS,
+  DEPARTURE_AIRPORTS,
+  OPENCAGEDATA_API_KEY,
+  OPEN_WEATHER_API_KEY,
+} from './constants';
 import {
   ARRIVAL_DROPDOWN,
   DATE_PICKER,
@@ -45,6 +50,8 @@ export const saveFormData = (model: FlightModel) => {
   model.arrivalAirport = ARRIVAL_AIRPORTS[ARRIVAL_DROPDOWN.value];
   model.date = DATE_PICKER.value;
   model.numberOfPassangers = Number(NUMBER_OF_PASSENGERS_PICKER.value);
+
+  localStorage.setItem('model', JSON.stringify(model));
 };
 
 export const getUserLocation = async (): Promise<GeolocationPosition> => {
