@@ -1,3 +1,6 @@
+import "../assets/detailsView.css"
+import "../assets/reset.css"
+
 type Aircraft = {
     name: string;
     seats: number;
@@ -117,6 +120,9 @@ type Aircraft = {
   
     const selectedAircraft = selectAircraft(selectedDestination);
     const selectedSeat = numberToLabel(parseInt(selectedSeatDiv.dataset.seatNumber), selectedAircraft.seatsPerRow);
+    const test = localStorage.getItem("model");
+    const obj = JSON.parse(test);
+    console.log(obj);
   
     alert(`Destination: ${selectedDestination}\nBaggage: ${selectedBaggage}\nSeat: ${selectedSeat}`);
   });

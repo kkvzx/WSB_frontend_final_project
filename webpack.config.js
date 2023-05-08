@@ -48,6 +48,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html', // output
       template: path.resolve(__dirname, 'src/index.html'),
+      chunks: ['main'],
     }),
     new HtmlWebpackPlugin({
       filename: 'detailsView.html', // output
