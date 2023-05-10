@@ -1,5 +1,5 @@
 
-const samolot = document.getElementsByClassName("choose-seat")[0];
+const samolot = document.getElementsByClassName("summaryViewchoose-seat")[0];
 const seatsInRow = 6;
 const rows = 15;
 const price = document.getElementsByClassName('value')[0];
