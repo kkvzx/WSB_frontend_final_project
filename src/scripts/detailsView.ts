@@ -1,11 +1,64 @@
 import "../assets/detailsView.css"
 import "../assets/reset.css"
 
-type Aircraft = {
+type TestObject = {
+  departureAirport: {
     name: string;
-    seats: number;
-    seatsPerRow: number;
+    icon: string;
+    longitude: number;
+    latitude: number;
   };
+  arrivalAirport: {
+    name: string;
+    icon: string;
+    longitude: number;
+    latitude: number;
+  };
+  date: string;
+  numberOfPassangers: number;
+};
+
+
+type Aircraft = {
+  name: string;
+  seats: number;
+  seatsPerRow: number;
+  numberOfPassangers?: number;
+};
+
+  window.addEventListener('load', async () => {
+    init();
+  
+  });
+  let testObject: TestObject;
+
+  function init() {
+    const test = localStorage.getItem("model");
+    testObject = JSON.parse(test);
+    console.log(testObject);
+  
+    if (testObject) {
+      
+      const selectedAircraft = selectAircraft(testObject.arrivalAirport.name);
+      selectedAircraft.numberOfPassangers = testObject.numberOfPassangers;
+      const destinationSelect = document.getElementById("destination") as HTMLSelectElement;
+  
+      // Clear previous options
+      destinationSelect.innerHTML = "";
+  
+      // Create new option element
+      const optionElement = document.createElement("option");
+      optionElement.value = getDestinationByAircraftName(selectedAircraft.name);
+      optionElement.textContent = selectedAircraft.name;
+  
+      // Append the new option to the select
+      destinationSelect.appendChild(optionElement);
+  
+      updateSeats(selectedAircraft);
+    }
+  }
+  
+  
   
   const destinationSelect = document.getElementById("destination") as HTMLSelectElement;
   const seatSelect = document.getElementById("seats") as HTMLDivElement;
@@ -34,6 +87,19 @@ type Aircraft = {
     const letterIndex = ((number - 1) % seatsPerRow) + 65;
     const letter = String.fromCharCode(letterIndex === 64 ? 65 : letterIndex);
     return `${rowNum}${letter}`;
+  }
+  
+  function getDestinationByAircraftName(aircraftName: string): string {
+    switch (aircraftName) {
+      case "Embraer":
+        return "domestic";
+      case "Boeing 737":
+        return "medium";
+      case "Dreamliner 787":
+        return "long";
+      default:
+        return "medium";
+    }
   }
   
   function updateSeats(aircraft: Aircraft): void {
@@ -75,24 +141,24 @@ type Aircraft = {
         seatDiv.innerHTML = `<div class="detailsView-seat-label">${numberToLabel(seatNumber, aircraft.seatsPerRow)}</div>`;
         seatDiv.addEventListener("click", function () {
           const selectedSeats = document.querySelectorAll(".detailsView-seat.selected");
-          selectedSeats.forEach((selectedSeat) => {
-            selectedSeat.classList.remove("selected");
-          });
-  
-          seatDiv.classList.add("selected");
+          if (!seatDiv.classList.contains("selected") && selectedSeats.length >= aircraft.numberOfPassangers) {
+            alert(`You can only select ${aircraft.numberOfPassangers} seat(s).`);
+            return;
+          }
+          seatDiv.classList.toggle("selected");
         });
         rowDiv.appendChild(seatDiv);
       }
     }
   }
   
-  function selectAircraft(destination: string): Aircraft {
-    switch (destination) {
-      case "domestic":
+  function selectAircraft(arrivalCity: string): Aircraft {
+    switch (arrivalCity) {
+      case "Warsaw":
         return aircrafts.embraer;
-      case "medium":
+      case "Paris":
         return aircrafts.boeing737;
-      case "long":
+      case "New York":
         return aircrafts.dreamliner787;
       default:
         return aircrafts.boeing737;
@@ -111,18 +177,20 @@ type Aircraft = {
   bookButton.addEventListener("click", function () {
     const selectedDestination = (document.getElementById("destination") as HTMLSelectElement).value;
     const selectedBaggage = (document.getElementById("baggage") as HTMLSelectElement).value;
-    const selectedSeatDiv = document.querySelector(".detailsView-seat.selected") as HTMLDivElement;
+    const selectedSeats = document.querySelectorAll(".detailsView-seat.selected");
   
-    if (!selectedSeatDiv) {
-      alert("Please select a seat.");
+    const selectedAircraft = selectAircraft(selectedDestination);
+  
+    if (selectedSeats.length !== selectedAircraft.numberOfPassangers) {
+      alert(`Please select ${selectedAircraft.numberOfPassangers} seat(s).`);
       return;
     }
   
-    const selectedAircraft = selectAircraft(selectedDestination);
-    const selectedSeat = numberToLabel(parseInt(selectedSeatDiv.dataset.seatNumber), selectedAircraft.seatsPerRow);
-    const test = localStorage.getItem("model");
-    const obj = JSON.parse(test);
-    console.log(obj);
+    const selectedSeatLabels = Array.from(selectedSeats).map((selectedSeatDiv: HTMLDivElement) => {
+      const seatNumber = parseInt(selectedSeatDiv.dataset.seatNumber);
+      return numberToLabel(seatNumber, selectedAircraft.seatsPerRow);
+    });
   
-    alert(`Destination: ${selectedDestination}\nBaggage: ${selectedBaggage}\nSeat: ${selectedSeat}`);
+    alert(`Destination: ${selectedDestination}\nBaggage: ${selectedBaggage}\nSeats: ${selectedSeatLabels.join(", ")}`);
   });
+  
