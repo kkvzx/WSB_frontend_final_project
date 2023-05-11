@@ -113,7 +113,7 @@ type Aircraft = {
       rowDiv.classList.add("detailsView-row");
       seatSelect.appendChild(rowDiv);
   
-      for (let seatInRow = 1; seatInRow <= aircraft.seatsPerRow + 1; seatInRow++) {
+      for (let seatInRow = 1; seatInRow <= (aircraft.name === "Dreamliner 787" ? aircraft.seatsPerRow - 1 : aircraft.seatsPerRow) + 1; seatInRow++) {
         if (aircraft.name === "Dreamliner 787" && seatInRow === 4) {
           const aisle = document.createElement("div");
           aisle.classList.add("detailsView-aisle");
@@ -134,7 +134,7 @@ type Aircraft = {
           continue;
         }
   
-        const seatNumber = (row - 1) * aircraft.seatsPerRow + seatInRow - (seatInRow > (aircraft.name === "Embraer" ? 3 : 4) ? 2 : 1);
+        const seatNumber = (row - 1) * (aircraft.name === "Dreamliner 787" ? aircraft.seatsPerRow - 1 : aircraft.seatsPerRow) + seatInRow - (seatInRow > (aircraft.name === "Embraer" ? 3 : 4) ? 2 : 1);;
         const seatDiv = document.createElement("div");
         seatDiv.classList.add("detailsView-seat");
         seatDiv.dataset.seatNumber = seatNumber.toString();
