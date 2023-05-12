@@ -153,17 +153,24 @@ type Aircraft = {
   }
   
   function selectAircraft(arrivalCity: string): Aircraft {
+    let aircraft: Aircraft;
     switch (arrivalCity) {
       case "Warsaw":
-        return aircrafts.embraer;
+        aircraft = aircrafts.embraer;
+        break;
       case "Paris":
-        return aircrafts.boeing737;
+        aircraft = aircrafts.boeing737;
+        break;
       case "New York":
-        return aircrafts.dreamliner787;
+        aircraft = aircrafts.dreamliner787;
+        break;
       default:
-        return aircrafts.boeing737;
+        aircraft = aircrafts.boeing737;
     }
+    aircraft.numberOfPassangers = testObject.numberOfPassangers;
+    return aircraft;
   }
+  
   
   // Initialize seats
   updateSeats(selectAircraft(destinationSelect.value));
@@ -191,6 +198,17 @@ type Aircraft = {
       return numberToLabel(seatNumber, selectedAircraft.seatsPerRow);
     });
   
-    alert(`Destination: ${selectedDestination}\nBaggage: ${selectedBaggage}\nSeats: ${selectedSeatLabels.join(", ")}`);
+    // Save the necessary data to localStorage here
+    const bookingData = {
+      destination: selectedDestination,
+      baggage: selectedBaggage,
+      seats: selectedSeatLabels
+    };
+  
+    localStorage.setItem('bookingData', JSON.stringify(bookingData));
+  
+    // Navigate to the summary page.
+    window.location.href = 'summaryView.html';
   });
+  
   
