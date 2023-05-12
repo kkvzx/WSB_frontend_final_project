@@ -1,3 +1,6 @@
+import "../assets/summaryView.css"
+import "../assets/reset.css"
+
 
 const samolot = document.getElementsByClassName("summaryViewchoose-seat")[0];
 const seatsInRow = 6;
