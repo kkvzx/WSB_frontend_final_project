@@ -7,7 +7,7 @@ DIST_PATH = path.resolve(__dirname, 'dist');
 PUBLIC_PATH = path.resolve(__dirname, 'public');
 
 module.exports = {
-  mode: 'development', // or production
+  mode: 'production',
   entry: {
     // remember that we deleted the main in package.json
     // this is where the project starts
