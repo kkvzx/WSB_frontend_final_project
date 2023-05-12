@@ -67,8 +67,6 @@ function createSeat(top: any, left: any, text: string) {
     return seat;
 }
 
-<<<<<<< HEAD
-=======
 // --- funkcja tworząca rzędy i miejsca w samolocie
 function addSeats() {
     let left = 415;
