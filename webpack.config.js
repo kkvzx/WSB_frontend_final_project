@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-ENTRY_PATH = path.resolve(__dirname, 'src/scripts/mainView/mainView.ts');
+ENTRY_PATH = path.resolve(__dirname, 'src/index.ts');
 DIST_PATH = path.resolve(__dirname, 'dist');
 PUBLIC_PATH = path.resolve(__dirname, 'public');
 
