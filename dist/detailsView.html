@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Booking</title>
+  <script defer src="/detailsView.0893dc7012fe9f29c92d.js"></script></head>
+  <body>
+    <div class="detailsView-container">
+        <h1 class="detailsView-h1">Flight Details Selection</h1>
+        
+        <div class="detailsView-selections detailsView-destination">
+            <label for="destination" class="detailsView-selection-label">Plane:</label>
+            <select id="destination" class="detailsView-select">
+              
+                <option value="domestic">Embraer</option>
+                <option value="medium">Boeing 737</option>
+                <option value="long">Dreamliner 787</option>
+            </select>
+        </div>
+
+        <div class="detailsView-selections">
+            <label for="baggage" class="detailsView-selection-label">Baggage options:</label>
+            <select id="baggage" class="detailsView-select">
+                <option value="no-baggage">No baggage</option>
+                <option value="checked-baggage">Checked baggage</option>
+                <option value="carry-on">Carry-on baggage</option>
+            </select>
+        </div>
+
+        <div class="detailsView-selections">
+            <label for="seats" class="detailsView-selection-label">Seat options:</label>
+            <div id="seats" class="detailsView-seat-container"></div>
+          </div>
+
+        <button id="book" class="detailsView-button">Book</button>
+    </div>
+  
+</body>
+</html>
