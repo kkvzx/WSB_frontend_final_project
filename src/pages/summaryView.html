@@ -10,27 +10,27 @@
     <!-- summary-view.html: Contains the summary view page, where users can review
     their ticket reservations before submitting. -->
     
-    <div class="summaryViewchoose-seat">
-      <h2 class="summaryView-seats-title">Chosen Seats:</h2>
-      <!-- Selected seats will be inserted here by your JavaScript -->
-    </div>
+
 
     <div class="summaryViewcontainer">
-
+      <div class="summaryViewchoose-seat">
+        <h2 class="summaryView-seats-title">Chosen Seats:</h2>
+        <!-- Selected seats will be inserted here by your JavaScript -->
+      </div>
       <div class="summaryViewweather">
-        <label for="summaryViewcity">Wybierz miasto:</label>
+        <label for="summaryViewcity">Choose City:</label>
         <select id="city" name="city">
-          <option value="Katowice" selected>Katowice</option>
-          <option value="Warszawa">Warszawa</option>
-          <option value="Kraków">Kraków</option>
-          <option value="Łódź">Łódź</option>
+          <option value="Warszawa" selected>Warsaw</option>
+          <option value="Paryż">Paris</option>
+          <option value="New York">New York</option>
+          
         </select>
-        <p>Temperatura: <span id="temperature"></span> &deg;C</p>
+        <p>Temperature: <span id="temperature"></span> &deg;C</p>
       </div>
       
       
       <div class="summaryViewcurrency">
-        <h1 class="summaryViewh1">Cena Biletów</h1>
+        <h1 class="summaryViewh1">Tickets Price</h1>
         
         <h2 class="summaryViewh2">
           <span class="value">0</span>
@@ -38,7 +38,7 @@
         </h2>
 
         <div class="summaryViewcurrencyboxes">
-          <div class="box" id="ZŁ">ZŁ</div>
+          <div class="box" id="ZŁ">PLN</div>
           <div class="box" id="EUR">EUR</div>
           <div class="box" id="USD">USD</div>
         </div>

@@ -22,7 +22,7 @@ const seatsContainer: HTMLElement = document.querySelector('.summaryViewchoose-s
 seats.forEach(seat => {
   const seatDiv = document.createElement('div');
   seatDiv.textContent = seat;
-  seatDiv.classList.add('selectedSeat'); // Add a class for styling if needed
+  seatDiv.classList.add('selectedSeat'); 
   seatsContainer.appendChild(seatDiv);
 });
 
