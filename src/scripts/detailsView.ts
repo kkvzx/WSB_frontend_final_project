@@ -191,6 +191,17 @@ type Aircraft = {
       return numberToLabel(seatNumber, selectedAircraft.seatsPerRow);
     });
   
-    alert(`Destination: ${selectedDestination}\nBaggage: ${selectedBaggage}\nSeats: ${selectedSeatLabels.join(", ")}`);
+    // Save the necessary data to localStorage here
+    const bookingData = {
+      destination: selectedDestination,
+      baggage: selectedBaggage,
+      seats: selectedSeatLabels
+    };
+  
+    localStorage.setItem('bookingData', JSON.stringify(bookingData));
+  
+    // Navigate to the summary page.
+    window.location.href = 'summaryView.html';
   });
+  
   
