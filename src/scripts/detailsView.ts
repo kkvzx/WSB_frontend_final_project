@@ -26,37 +26,38 @@ type Aircraft = {
   numberOfPassangers?: number;
 };
 
-  window.addEventListener('load', async () => {
-    init();
-  
-  });
-  let testObject: TestObject;
+window.addEventListener('load', async () => {
+  init();
+});
 
-  function init() {
-    const test = localStorage.getItem("model");
-    testObject = JSON.parse(test);
-    console.log(testObject);
-  
-    if (testObject) {
-      
-      const selectedAircraft = selectAircraft(testObject.arrivalAirport.name);
-      selectedAircraft.numberOfPassangers = testObject.numberOfPassangers;
-      const destinationSelect = document.getElementById("destination") as HTMLSelectElement;
-  
-      // Clear previous options
-      destinationSelect.innerHTML = "";
-  
-      // Create new option element
-      const optionElement = document.createElement("option");
-      optionElement.value = getDestinationByAircraftName(selectedAircraft.name);
-      optionElement.textContent = selectedAircraft.name;
-  
-      // Append the new option to the select
-      destinationSelect.appendChild(optionElement);
-  
-      updateSeats(selectedAircraft);
-    }
+let testObject: TestObject;
+
+function init() {
+  const test = localStorage.getItem("model");
+  testObject = JSON.parse(test);
+  console.log(testObject);
+
+  if (testObject) {
+    const selectedAircraft = selectAircraft(testObject.arrivalAirport.name);
+    selectedAircraft.numberOfPassangers = testObject.numberOfPassangers;
+    const destinationSelect = document.getElementById("destination") as HTMLSelectElement;
+
+    // Clear previous options
+    destinationSelect.innerHTML = "";
+
+    // Create new option element
+    const optionElement = document.createElement("option");
+    optionElement.value = getDestinationByAircraftName(selectedAircraft.name);
+    optionElement.textContent = selectedAircraft.name;
+
+    // Append the new option to the select
+    destinationSelect.appendChild(optionElement);
+
+    updateSeats(selectedAircraft);
   }
+  // Initialize seats
+  updateSeats(selectAircraft(destinationSelect.value));
+}
   
   
   
@@ -172,8 +173,7 @@ type Aircraft = {
   }
   
   
-  // Initialize seats
-  updateSeats(selectAircraft(destinationSelect.value));
+
   
   // Handle destination change
   destinationSelect.addEventListener("change", function () {
