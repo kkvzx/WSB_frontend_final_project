@@ -1,72 +1,70 @@
-import "../assets/summaryView.css"
-import "../assets/reset.css"
+import "../assets/summaryView.css";
+import "../assets/reset.css";
 
+const samolot: HTMLElement = document.getElementsByClassName("summaryViewchoose-seat")[0] as HTMLElement;
+const seatsInRow: number = 6;
+const rows: number = 15;
+const price: HTMLElement = document.getElementsByClassName('value')[0] as HTMLElement;
+const currencySpan: HTMLElement = document.getElementsByClassName('currencySpan')[0] as HTMLElement;
+const ticketPrice: number = 100;
+const currencies: string[] = ['zł', 'eur', 'usd'];
+const exchangeCurr: number[] = [4.6039, 4.2006];
 
-const samolot = document.getElementsByClassName("summaryViewchoose-seat")[0];
-const seatsInRow = 6;
-const rows = 15;
-const price = document.getElementsByClassName('value')[0];
-const currencySpan = document.getElementsByClassName('currencySpan')[0];
-const ticketPrice = 100;
-const currencies = ['zł', 'eur', 'usd']
-const exchangeCurr = [4.6039, 4.2006]
-
-let sum = 0;
-let actualCurrency = 0;
+let sum: number = 0;
+let actualCurrency: number = 0;
 
 // --- tablica z wybranymi miejscami
 let seats: string[] = [];
 
 // --- funkcja zaznaczająca lub odznaczająca siedzenie
-function chooseSeat(div: any) {
-    let seatNumber = div.firstChild.innerHTML;
-    
-    if(div.classList.length == 1) {
+function chooseSeat(div: HTMLElement) {
+    let seatNumber = div.firstChild?.textContent;
+
+    if (div.classList.length == 1) {
         div.classList.add('choosed');
-        seats.push(seatNumber);
+        seats.push(seatNumber as string);
     } else {
         div.classList.remove('choosed');
         let i = seats.findIndex((obj) => obj == seatNumber);
-        seats.splice(i,1);
+        seats.splice(i, 1);
     }
-    
+
     sum = seats.length * ticketPrice;
     let value = convertCurrency(actualCurrency);
     price.innerHTML = value.toString();
     currencySpan.innerHTML = ' ' + currencies[actualCurrency];
-    
+
     // console.log(seats);
     // console.log(convertCurrency(0) + "eur");
     // console.log(convertCurrency(1) + "usd");
 }
 
-
-function convertCurrency(toCurrency: any) {
+function convertCurrency(toCurrency: number) {
     if (toCurrency == 1) {
-      return (sum / exchangeCurr[toCurrency-1]).toFixed(2);
+        return (sum / exchangeCurr[toCurrency - 1]).toFixed(2);
     } else if (toCurrency == 2) {
-      return (sum / exchangeCurr[toCurrency-1]).toFixed(2);
+        return (sum / exchangeCurr[toCurrency - 1]).toFixed(2);
     } else {
-      return sum;
+        return sum;
     }
 }
 
 // --- funkcja tworząca "miejsce"
-function createSeat(top: any, left: any, text: string) {
+function createSeat(top: number, left: number, text: string) {
     let seat = document.createElement('div');
-    
+
     seat.setAttribute('class', 'seat');
     seat.style.top = `${top}px`;
     seat.style.left = `${left}px`;
-    seat.addEventListener('click', function() {
+    seat.addEventListener('click', function () {
         chooseSeat(seat);
     });
 
     let textInside = document.createElement('h4');
     textInside.innerHTML = text;
-    
+
     seat.appendChild(textInside);
-    
+
     return seat;
 }
 
@@ -77,16 +75,16 @@ function addSeats() {
     let offsetX = 10;
     let offsetY = 20;
     let corridor = 30;
-    let array = ['A','B','C','D','E','F'];
+    let array = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-    for(let i = 1; i <= rows; i++) {
+    for (let i = 1; i <= rows; i++) {
         let top = 35;
 
-        for(let j = 0; j<seatsInRow; j++) {
+        for (let j = 0; j < seatsInRow; j++) {
             let text = i + array[j];
             samolot.appendChild(createSeat(top, left, text));
 
-            if(j == 2) top += corridor + seatSize;
+            if (j == 2) top += corridor + seatSize;
             else top += offsetX + seatSize;
         }
 
@@ -147,4 +145,3 @@ citySelect.addEventListener('change', async () => {
   const city: string = citySelect.value;
   getWeather(city);
 });
-
